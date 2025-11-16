@@ -1,0 +1,32 @@
+{
+  "name": "@tanquealo/types",
+  "version": "1.0.0",
+  "description": "Shared TypeScript types for Tanquealo platform",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "yarn build",
+    "watch": "tsc --watch"
+  },
+  "keywords": [
+    "types",
+    "typescript",
+    "tanquealo"
+  ],
+  "author": "Tanquealo Team",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tanquealo/tanquealo-types.git"
+  },
+  "publishConfig": {
+    "@tanquealo:registry": "https://npm.pkg.github.com"
+  }
+}
