@@ -1,0 +1,15 @@
+# Source files
+src/
+tsconfig.json
+
+# Dev files
+*.test.ts
+*.spec.ts
+
+# Config
+.gitignore
+.eslintrc*
+.prettierrc*
+
+# Docs
+README.md

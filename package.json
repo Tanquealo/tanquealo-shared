@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "build": "tsc",
-    "prepublishOnly": "yarn build",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "yarn clean && yarn build",
     "watch": "tsc --watch"
   },
   "keywords": [
