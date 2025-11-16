@@ -1,6 +1,6 @@
 {
   "name": "@tanquealo/types",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Shared TypeScript types for Tanquealo platform",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
