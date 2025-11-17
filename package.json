@@ -1,31 +1,59 @@
 {
-  "name": "@tanquealo/types",
-  "version": "1.0.1",
-  "description": "Shared TypeScript types for Tanquealo platform",
+  "name": "@tanquealo/shared",
+  "version": "1.0.0",
+  "description": "Shared types, schemas, and utilities for Tanquealo platform (backend, mobile, web)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.js"
+    },
+    "./auth": {
+      "types": "./dist/auth/index.d.ts",
+      "require": "./dist/auth/index.js",
+      "import": "./dist/auth/index.js"
+    },
+    "./station": {
+      "types": "./dist/station/index.d.ts",
+      "require": "./dist/station/index.js",
+      "import": "./dist/station/index.js"
+    },
+    "./api": {
+      "types": "./dist/api/index.d.ts",
+      "require": "./dist/api/index.js",
+      "import": "./dist/api/index.js"
+    }
+  },
   "scripts": {
     "build": "tsc",
-    "clean": "rm -rf dist",
-    "prepublishOnly": "yarn clean && yarn build",
-    "watch": "tsc --watch"
+    "prepublishOnly": "yarn build",
+    "watch": "tsc --watch",
+    "clean": "rm -rf dist"
   },
   "keywords": [
     "types",
+    "schemas",
+    "validation",
     "typescript",
-    "tanquealo"
+    "tanquealo",
+    "shared"
   ],
   "author": "Tanquealo Team",
   "license": "ISC",
-  "devDependencies": {
-    "typescript": "^5.9.3"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Tanquealo/tanquealo-types.git"
+    "url": "git+https://github.com/Tanquealo/tanquealo-shared.git"
+  },
+  "peerDependencies": {
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
   },
   "publishConfig": {
     "@tanquealo:registry": "https://npm.pkg.github.com"
