@@ -27,6 +27,16 @@
       "types": "./dist/api/index.d.ts",
       "require": "./dist/api/index.js",
       "import": "./dist/api/index.js"
+    },
+    "./report": {
+      "types": "./dist/report/index.d.ts",
+      "require": "./dist/report/index.js",
+      "import": "./dist/report/index.js"
+    },
+    "./user": {
+      "types": "./dist/user/index.d.ts",
+      "require": "./dist/user/index.js",
+      "import": "./dist/user/index.js"
     }
   },
   "scripts": {
