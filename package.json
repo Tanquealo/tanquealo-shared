@@ -60,7 +60,7 @@
     "url": "git+https://github.com/Tanquealo/tanquealo-shared.git"
   },
   "peerDependencies": {
-    "zod": "^3.22.0"
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "typescript": "^5.9.3"
