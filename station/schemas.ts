@@ -80,7 +80,7 @@ export const createStationSchema = z.object({
     .trim(),
   latitude: latitudeSchema,
   longitude: longitudeSchema,
-  stationType: stationTypeSchema,
+  type: stationTypeSchema,
   fuelTypes: z
     .array(fuelTypeSchema)
     .min(1, 'At least one fuel type is required')
@@ -91,9 +91,6 @@ export const createStationSchema = z.object({
     .max(4, 'Maximum 4 payment methods allowed')
     .optional()
     .default([PaymentMethod.CASH_USD]),
-  hasConvenience: z.boolean().optional().default(false),
-  hasCarWash: z.boolean().optional().default(false),
-  hasAirPump: z.boolean().optional().default(false),
 });
 
 /**
@@ -115,7 +112,7 @@ export const updateStationSchema = z
       .optional(),
     latitude: latitudeSchema.optional(),
     longitude: longitudeSchema.optional(),
-    stationType: stationTypeSchema.optional(),
+    type: stationTypeSchema.optional(),
     fuelTypes: z
       .array(fuelTypeSchema)
       .min(1, 'At least one fuel type is required')
@@ -126,9 +123,6 @@ export const updateStationSchema = z
       .min(1, 'At least one payment method is required')
       .max(4, 'Maximum 4 payment methods allowed')
       .optional(),
-    hasConvenience: z.boolean().optional(),
-    hasCarWash: z.boolean().optional(),
-    hasAirPump: z.boolean().optional(),
   })
   .refine((data) => Object.keys(data).length > 0, {
     message: 'At least one field must be provided for update',

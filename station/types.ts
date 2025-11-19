@@ -18,7 +18,7 @@ export const PAYMENT_METHOD_LABELS: Record<PaymentMethod, string> = {
   [PaymentMethod.CASH_BS]: 'Efectivo (Bs)',
   [PaymentMethod.CASH_USD]: 'Efectivo (USD)',
   [PaymentMethod.POS]: 'Punto de Venta',
-  [PaymentMethod.DIGITAL_BS]: 'Pago Digital (Bs)',
+  [PaymentMethod.DIGITAL_BS]: 'Pago Movil (Bs)',
 };
 
 // ============================================================================
@@ -32,18 +32,13 @@ export interface GasStation {
   latitude: number;
   longitude: number;
   geohash: string; // For efficient proximity queries
-  stationType: StationType;
+  type: StationType;             // SUBSIDIZED | DOLLARIZED
   fuelTypes: FuelType[];
   
   // Payment and ratings
   paymentMethods: PaymentMethod[];
   averageRating: number; // 0.00 - 5.00
   totalRatings: number;  // Count of ratings
-  
-  // Amenities
-  hasConvenience: boolean;
-  hasCarWash: boolean;
-  hasAirPump: boolean;
   
   createdAt: Date;
   updatedAt: Date;
@@ -95,12 +90,9 @@ export interface CreateStationRequest {
   address: string;
   latitude: number;
   longitude: number;
-  stationType: StationType;
+  type: StationType;
   fuelTypes: FuelType[];
-  paymentMethods?: PaymentMethod[]; // Default: [CASH_BS]
-  hasConvenience?: boolean;
-  hasCarWash?: boolean;
-  hasAirPump?: boolean;
+  paymentMethods?: PaymentMethod[]; // Default: [CASH_USD]
 }
 
 export interface UpdateStationRequest {
@@ -108,12 +100,9 @@ export interface UpdateStationRequest {
   address?: string;
   latitude?: number;
   longitude?: number;
-  stationType?: StationType;
+  type?: StationType;
   fuelTypes?: FuelType[];
   paymentMethods?: PaymentMethod[];
-  hasConvenience?: boolean;
-  hasCarWash?: boolean;
-  hasAirPump?: boolean;
 }
 
 export interface NearbyStationsRequest {
