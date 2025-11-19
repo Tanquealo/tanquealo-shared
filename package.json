@@ -67,8 +67,5 @@
   },
   "publishConfig": {
     "@tanquealo:registry": "https://npm.pkg.github.com"
-  },
-  "dependencies": {
-    "@tanquealo/shared": "file:../tanquealo-shared"
   }
 }
