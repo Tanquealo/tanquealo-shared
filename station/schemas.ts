@@ -4,7 +4,7 @@
  */
 
 import { z } from 'zod';
-import { StationType, FuelType, StationStatus } from './types';
+import { StationType, FuelType, StationStatus, PaymentMethod } from './types';
 
 /**
  * Latitude validation: -90 to 90
@@ -34,7 +34,7 @@ const longitudeSchema = z
  * Station Type enum validation
  */
 const stationTypeSchema = z.nativeEnum(StationType, {
-  errorMap: () => ({ message: 'Invalid station type. Must be PDVSA, PRIVATE, or MIXED' }),
+  errorMap: () => ({ message: 'Invalid station type. Must be SUBSIDIZED or DOLLARIZED' }),
 });
 
 /**
@@ -42,7 +42,7 @@ const stationTypeSchema = z.nativeEnum(StationType, {
  */
 const fuelTypeSchema = z.nativeEnum(FuelType, {
   errorMap: () => ({
-    message: 'Invalid fuel type. Must be GASOLINA_95, GASOLINA_91, DIESEL, or GAS',
+    message: 'Invalid fuel type. Must be GASOLINE, GASOIL, or GAS',
   }),
 });
 
@@ -51,7 +51,16 @@ const fuelTypeSchema = z.nativeEnum(FuelType, {
  */
 const stationStatusSchema = z.nativeEnum(StationStatus, {
   errorMap: () => ({
-    message: 'Invalid station status. Must be OPEN, CLOSED, QUEUE, NO_FUEL, or UNKNOWN',
+    message: 'Invalid station status. Must be OPEN, CLOSED, REFILLING, QUEUE, NO_FUEL, or UNKNOWN',
+  }),
+});
+
+/**
+ * Payment Method enum validation
+ */
+const paymentMethodSchema = z.nativeEnum(PaymentMethod, {
+  errorMap: () => ({
+    message: 'Invalid payment method. Must be CASH_BS, CASH_USD, POS, or DIGITAL_BS',
   }),
 });
 
@@ -75,7 +84,13 @@ export const createStationSchema = z.object({
   fuelTypes: z
     .array(fuelTypeSchema)
     .min(1, 'At least one fuel type is required')
-    .max(4, 'Maximum 4 fuel types allowed'),
+    .max(3, 'Maximum 3 fuel types allowed'),
+  paymentMethods: z
+    .array(paymentMethodSchema)
+    .min(1, 'At least one payment method is required')
+    .max(4, 'Maximum 4 payment methods allowed')
+    .optional()
+    .default([PaymentMethod.CASH_USD]),
   hasConvenience: z.boolean().optional().default(false),
   hasCarWash: z.boolean().optional().default(false),
   hasAirPump: z.boolean().optional().default(false),
@@ -106,6 +121,11 @@ export const updateStationSchema = z
       .min(1, 'At least one fuel type is required')
       .max(4, 'Maximum 4 fuel types allowed')
       .optional(),
+    paymentMethods: z
+      .array(paymentMethodSchema)
+      .min(1, 'At least one payment method is required')
+      .max(4, 'Maximum 4 payment methods allowed')
+      .optional(),
     hasConvenience: z.boolean().optional(),
     hasCarWash: z.boolean().optional(),
     hasAirPump: z.boolean().optional(),
@@ -135,6 +155,12 @@ export const nearbyStationsSchema = z.object({
     .default(20),
   status: stationStatusSchema.optional(),
   fuelType: fuelTypeSchema.optional(),
+  paymentMethod: paymentMethodSchema.optional(),
+  minRating: z
+    .number()
+    .min(0, 'Minimum rating must be at least 0')
+    .max(5, 'Minimum rating must not exceed 5')
+    .optional(),
 });
 
 /**
