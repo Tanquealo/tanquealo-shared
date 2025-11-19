@@ -1,6 +1,6 @@
 {
   "name": "@tanquealo/shared",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Shared types, schemas, and utilities for Tanquealo platform (backend, mobile, web)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
