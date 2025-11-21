@@ -33,17 +33,17 @@ export interface GasStation {
   longitude: number;
   geohash: string; // For efficient proximity queries
   type: StationType;             // SUBSIDIZED | DOLLARIZED
-  fuelTypes: FuelType[];
+  fuel_types: FuelType[];
   
   // Payment and ratings
-  paymentMethods: PaymentMethod[];
-  averageRating: number; // 0.00 - 5.00
-  totalRatings: number;  // Count of ratings
+  payment_methods: PaymentMethod[];
+  average_rating: number; // 0.00 - 5.00
+  total_ratings: number;  // Count of ratings
   
-  createdAt: Date;
-  updatedAt: Date;
-  createdBy: string; // User ID who added this station
-  isVerified: boolean; // Admin-verified station
+  created_at: Date;
+  updated_at: Date;
+  created_by: string; // User ID who added this station
+  is_verified: boolean; // Admin-verified station
 }
 
 export enum StationType {
@@ -67,14 +67,14 @@ export enum StationStatus {
 }
 
 export interface StationCurrentStatus {
-  stationId: string;
+  station_id: string;
   status: StationStatus;
-  availableFuels: FuelType[];
-  queueLength: QueueLength;
-  lastUpdated: Date;
-  reportCount: number; // Number of reports in consensus
-  confidenceScore: number; // 0-100, based on reports and reporter trust
-  averageReporterTrust: number;
+  available_fuels: FuelType[];
+  queue_length: QueueLength;
+  last_updated: Date;
+  report_count: number; // Number of reports in consensus
+  confidence_score: number; // 0-100, based on reports and reporter trust
+  average_reporter_trust: number;
 }
 
 export enum QueueLength {
@@ -91,8 +91,8 @@ export interface CreateStationRequest {
   latitude: number;
   longitude: number;
   type: StationType;
-  fuelTypes: FuelType[];
-  paymentMethods?: PaymentMethod[]; // Default: [CASH_USD]
+  fuel_types: FuelType[];
+  payment_methods?: PaymentMethod[]; // Default: [CASH_USD]
 }
 
 export interface UpdateStationRequest {
@@ -101,24 +101,24 @@ export interface UpdateStationRequest {
   latitude?: number;
   longitude?: number;
   type?: StationType;
-  fuelTypes?: FuelType[];
-  paymentMethods?: PaymentMethod[];
+  fuel_types?: FuelType[];
+  payment_methods?: PaymentMethod[];
 }
 
 export interface NearbyStationsRequest {
   latitude: number;
   longitude: number;
-  radiusKm?: number; // Default 5km
+  radius_km?: number; // Default 5km
   limit?: number; // Default 20
   status?: StationStatus; // Filter by status
-  fuelType?: FuelType; // Filter by fuel availability
-  paymentMethod?: PaymentMethod; // Filter by payment method
-  minRating?: number; // Filter by minimum rating (0-5)
+  fuel_type?: FuelType; // Filter by fuel availability
+  payment_method?: PaymentMethod; // Filter by payment method
+  min_rating?: number; // Filter by minimum rating (0-5)
 }
 
 export interface StationWithDistance extends GasStation {
-  distanceKm: number;
-  currentStatus?: StationCurrentStatus;
+  distance_km: number;
+  current_status?: StationCurrentStatus;
 }
 
 export interface SearchStationsRequest {

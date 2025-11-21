@@ -6,26 +6,26 @@
 // Canonical User entity
 export interface User {
   id: string;
-  phoneNumber: string;
+  phone_number: string;
   username?: string;
   avatar?: string;
 
   // Trust & Reputation
-  trustScore: number;
-  totalReports: number;
-  accurateReports: number;
-  disputedReports: number;
+  trust_score: number;
+  total_reports: number;
+  accurate_reports: number;
+  disputed_reports: number;
 
   // Activity / Status
-  createdAt: Date;
-  lastActive: Date;
-  isBanned: boolean;
-  banReason?: string;
-  banExpiresAt?: Date;
+  created_at: Date;
+  last_active: Date;
+  is_banned: boolean;
+  ban_reason?: string;
+  ban_expires_at?: Date;
 
   // Extended fields
-  helpfulInteractions?: number;
-  reportStreak?: number;
+  helpful_interactions?: number;
+  report_streak?: number;
   achievements?: Achievement[];
   level?: number;
   experience?: number;
@@ -36,8 +36,8 @@ export interface Achievement {
   code: string; // FIRST_REPORT, TRUSTED_REPORTER, etc.
   name: string;
   description: string;
-  iconUrl?: string;
-  unlockedAt: Date;
+  icon_url?: string;
+  unlocked_at: Date;
 }
 
 export enum AchievementCode {
@@ -54,43 +54,43 @@ export enum AchievementCode {
 
 export interface TrustScoreHistory {
   id: string;
-  userId: string;
-  previousScore: number;
-  newScore: number;
+  user_id: string;
+  previous_score: number;
+  new_score: number;
   change: number;
   reason: string; // "accurate_report", "disputed_report", "helpful_interaction"
-  relatedReportId?: string;
-  createdAt: Date;
+  related_report_id?: string;
+  created_at: Date;
 }
 
 export interface UserStats {
-  userId: string;
+  user_id: string;
 
   // Reporting stats
-  totalReports: number;
-  accurateReports: number;
-  disputedReports: number;
-  accuracyRate: number; // Percentage
+  total_reports: number;
+  accurate_reports: number;
+  disputed_reports: number;
+  accuracy_rate: number; // Percentage
 
   // Interaction stats
-  totalInteractions: number;
+  total_interactions: number;
   confirmations: number;
   disputes: number;
   flags: number;
 
   // Activity stats
-  reportStreak: number;
-  longestStreak: number;
-  activeDays: number;
-  averageReportsPerDay: number;
+  report_streak: number;
+  longest_streak: number;
+  active_days: number;
+  average_reports_per_day: number;
 
   // Trust stats
-  currentTrustScore: number;
-  highestTrustScore: number;
-  lowestTrustScore: number;
+  current_trust_score: number;
+  highest_trust_score: number;
+  lowest_trust_score: number;
 
   // Achievements
-  achievementsCount: number;
+  achievements_count: number;
   level: number;
   experience: number;
 }
@@ -117,7 +117,7 @@ export interface GetLeaderboardQuery {
 }
 
 export interface LeaderboardEntry {
-  userId: string;
+  user_id: string;
   username?: string;
   avatar?: string;
   rank: number;
@@ -127,7 +127,7 @@ export interface LeaderboardEntry {
 
 export interface GetLeaderboardResponse {
   entries: LeaderboardEntry[];
-  userRank?: LeaderboardEntry; // Current user's position
+  user_rank?: LeaderboardEntry; // Current user's position
   period: string;
   metric: string;
 }

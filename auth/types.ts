@@ -40,10 +40,10 @@ export enum Permission {
 }
 
 export interface JWTPayload {
-  userId: string;
-  phoneNumber: string;
+  user_id: string;
+  phone_number: string;
   role: UserRole;
-  trustScore: number;
+  trust_score: number;
   iat?: number; // Issued at
   exp?: number; // Expiry
 }
@@ -52,41 +52,41 @@ export interface AuthResponse {
   user: Pick<
     User,
     | 'id'
-    | 'phoneNumber'
+    | 'phone_number'
     | 'username'
-    | 'trustScore'
-    | 'totalReports'
-    | 'accurateReports'
-    | 'disputedReports'
-    | 'isBanned'
+    | 'trust_score'
+    | 'total_reports'
+    | 'accurate_reports'
+    | 'disputed_reports'
+    | 'is_banned'
   > & { role: UserRole };
-  accessToken: string;
-  refreshToken: string;
+  access_token: string;
+  refresh_token: string;
 }
 
 // Request/Response Types
 export interface RegisterRequest {
-  phoneNumber: string;
+  phone_number: string;
   username?: string;
 }
 
 export interface VerifyCodeRequest {
-  phoneNumber: string;
+  phone_number: string;
   code: string;
 }
 
 export interface LoginRequest {
-  phoneNumber: string;
+  phone_number: string;
   code: string;
 }
 
 export interface RefreshTokenRequest {
-  refreshToken: string;
+  refresh_token: string;
 }
 
 export interface RegisterResponse {
   message: string;
-  phoneNumber: string;
+  phone_number: string;
 }
 
 export interface VerifyCodeResponse extends AuthResponse {}
@@ -94,7 +94,7 @@ export interface VerifyCodeResponse extends AuthResponse {}
 export interface LoginResponse extends AuthResponse {}
 
 export interface RefreshTokenResponse {
-  accessToken: string;
+  access_token: string;
 }
 
 // Role-based Access Control

@@ -27,71 +27,71 @@ export enum InteractionType {
 // Core Types
 export interface StatusReport {
   id: string;
-  stationId: string;
-  reporterId: string;
-  reportType: ReportType;
+  station_id: string;
+  reporter_id: string;
+  report_type: ReportType;
   status: ReportStatus;
 
   // Status details
-  stationStatus?: string; // OPEN, CLOSED, QUEUE, NO_FUEL
-  availableFuels?: string[]; // Array of fuel types
-  queueLength?: number; // Number of vehicles
-  estimatedWaitMinutes?: number;
+  station_status?: string; // OPEN, CLOSED, QUEUE, NO_FUEL
+  available_fuels?: string[]; // Array of fuel types
+  queue_length?: number; // Number of vehicles
+  estimated_wait_minutes?: number;
 
   // Metadata
   latitude: number;
   longitude: number;
   accuracy?: number; // GPS accuracy in meters
-  reportedAt: Date;
-  expiresAt: Date;
+  reported_at: Date;
+  expires_at: Date;
 
   // Trust & Consensus
   confirmations: number;
   disputes: number;
-  confidenceScore: number; // 0-100
-  reporterTrustScore: number; // Reporter's trust at time of report
+  confidence_score: number; // 0-100
+  reporter_trust_score: number; // Reporter's trust at time of report
 
   // Photos (optional)
-  photoUrls?: string[];
+  photo_urls?: string[];
 
   // Timestamps
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
+  updated_at: Date;
 }
 
 export interface ReportInteraction {
   id: string;
-  reportId: string;
-  userId: string;
-  interactionType: InteractionType;
-  userTrustScore: number; // User's trust at time of interaction
+  report_id: string;
+  user_id: string;
+  interaction_type: InteractionType;
+  user_trust_score: number; // User's trust at time of interaction
   weight: number; // How much this interaction counts (based on trust)
-  createdAt: Date;
+  created_at: Date;
 }
 
 export interface AggregatedStationStatus {
-  stationId: string;
+  station_id: string;
   status: string;
-  availableFuels: string[];
-  queueLength: number | null;
-  lastUpdated: Date;
-  reportCount: number;
-  confidenceScore: number;
-  averageReporterTrust: number;
+  available_fuels: string[];
+  queue_length: number | null;
+  last_updated: Date;
+  report_count: number;
+  confidence_score: number;
+  average_reporter_trust: number;
 }
 
 // Request/Response Types
 export interface CreateReportRequest {
-  stationId: string;
-  reportType: ReportType;
-  stationStatus?: string;
-  availableFuels?: string[];
-  queueLength?: number;
-  estimatedWaitMinutes?: number;
+  station_id: string;
+  report_type: ReportType;
+  station_status?: string;
+  available_fuels?: string[];
+  queue_length?: number;
+  estimated_wait_minutes?: number;
   latitude: number;
   longitude: number;
   accuracy?: number;
-  photoUrls?: string[];
+  photo_urls?: string[];
 }
 
 export interface CreateReportResponse {
@@ -100,7 +100,7 @@ export interface CreateReportResponse {
 }
 
 export interface InteractWithReportRequest {
-  interactionType: InteractionType;
+  interaction_type: InteractionType;
 }
 
 export interface InteractWithReportResponse {
@@ -110,10 +110,10 @@ export interface InteractWithReportResponse {
 }
 
 export interface GetReportsQuery {
-  stationId?: string;
-  reporterId?: string;
+  station_id?: string;
+  reporter_id?: string;
   status?: ReportStatus;
-  reportType?: ReportType;
+  report_type?: ReportType;
   limit?: number;
   offset?: number;
 }
