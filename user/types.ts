@@ -8,7 +8,11 @@ export interface User {
   id: string;
   phone_number: string;
   username?: string;
-  avatar?: string;
+
+  // Profile
+  date_of_birth?: Date;
+  profile_completed: boolean;
+  profile_photo_url?: string;
 
   // Trust & Reputation
   trust_score: number;
@@ -98,7 +102,8 @@ export interface UserStats {
 // Request/Response Types
 export interface UpdateProfileRequest {
   username?: string;
-  avatar?: string;
+  date_of_birth?: Date;
+  profile_photo_url?: string;
 }
 
 export interface UpdateProfileResponse {
@@ -119,7 +124,7 @@ export interface GetLeaderboardQuery {
 export interface LeaderboardEntry {
   user_id: string;
   username?: string;
-  avatar?: string;
+  profile_photo_url?: string;
   rank: number;
   score: number; // Trust score, report count, or interaction count
   change: number; // Change from previous period

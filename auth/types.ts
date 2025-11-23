@@ -59,6 +59,9 @@ export interface AuthResponse {
     | 'accurate_reports'
     | 'disputed_reports'
     | 'is_banned'
+    | 'date_of_birth'
+    | 'profile_completed'
+    | 'profile_photo_url'
   > & { role: UserRole };
   access_token: string;
   refresh_token: string;
