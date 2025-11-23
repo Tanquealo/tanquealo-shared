@@ -9,14 +9,14 @@ import { z } from 'zod';
 const venezuelanPhoneRegex = /^\+58(412|414|424|416|426)\d{7}$/;
 
 export const registerSchema = z.object({
-  phoneNumber: z
+  phone_number: z
     .string()
     .regex(venezuelanPhoneRegex, 'Phone number must be a valid Venezuelan number (e.g., +584121234567)'),
   username: z.string().min(3).max(50).optional(),
 });
 
 export const verifyCodeSchema = z.object({
-  phoneNumber: z.string().regex(venezuelanPhoneRegex),
+  phone_number: z.string().regex(venezuelanPhoneRegex),
   code: z
     .string()
     .length(6, 'Verification code must be 6 digits')
@@ -24,12 +24,12 @@ export const verifyCodeSchema = z.object({
 });
 
 export const loginSchema = z.object({
-  phoneNumber: z.string().regex(venezuelanPhoneRegex),
+  phone_number: z.string().regex(venezuelanPhoneRegex),
   code: z.string().length(6).regex(/^\d+$/),
 });
 
 export const refreshTokenSchema = z.object({
-  refreshToken: z.string().min(1, 'Refresh token is required'),
+  refresh_token: z.string().min(1, 'Refresh token is required'),
 });
 
 // Export types inferred from schemas
