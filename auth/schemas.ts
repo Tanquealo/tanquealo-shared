@@ -25,7 +25,6 @@ export const verifyCodeSchema = z.object({
 
 export const loginSchema = z.object({
   phone_number: z.string().regex(venezuelanPhoneRegex),
-  code: z.string().length(6).regex(/^\d+$/),
 });
 
 export const refreshTokenSchema = z.object({
