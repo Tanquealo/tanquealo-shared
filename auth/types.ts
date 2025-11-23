@@ -100,6 +100,15 @@ export interface RefreshTokenResponse {
   access_token: string;
 }
 
+export interface CheckUsernameRequest {
+  username: string;
+}
+
+export interface CheckUsernameResponse {
+  available: boolean;
+  suggestions?: string[];
+}
+
 // Role-based Access Control
 export const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
   [UserRole.USER]: [
